@@ -1,0 +1,296 @@
+/* 
+ * Aadu Puli Aattam - Global Styles
+ * Theme: Golden Saffron Traditional Indian Design
+ */
+
+/* CSS Variables for theming */
+:root {
+  /* Primary Colors */
+  --color-primary: #F5A623;
+  --color-primary-dark: #E8920F;
+  --color-primary-light: #FFD54F;
+
+  /* Accent Colors */
+  --color-tiger: #D84315;
+  --color-tiger-dark: #BF360C;
+  --color-goat: #1565C0;
+  --color-goat-dark: #0D47A1;
+
+  /* Neutrals */
+  --color-background: #FFF8E1;
+  --color-surface: #FFFFFF;
+  --color-text: #3E2723;
+  --color-text-secondary: #5D4037;
+  --color-border: #D7CCC8;
+
+  /* States */
+  --color-success: #4CAF50;
+  --color-error: #E53935;
+  --color-warning: #FF9800;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  /* Typography */
+  --font-heading: 'Georgia', 'Palatino', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1A1A2E;
+    --color-surface: #16213E;
+    --color-text: #EAEAEA;
+    --color-text-secondary: #B8B8B8;
+    --color-border: #3D3D5C;
+  }
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, var(--color-background) 0%, #FFECB3 100%);
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Button Base Styles */
+button,
+.btn {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  /* Touch target */
+  min-width: 44px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-tiger) 0%, var(--color-tiger-dark) 100%);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: #FFF8E1;
+}
+
+.btn-info {
+  background: linear-gradient(135deg, var(--color-goat) 0%, var(--color-goat-dark) 100%);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-info:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-large {
+  padding: var(--space-md) var(--space-xl);
+  font-size: 1.1rem;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Common Layout Classes */
+.loading-screen,
+.error-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.loading-content,
+.error-content {
+  background: var(--color-surface);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.error-message {
+  color: var(--color-error);
+  margin: var(--space-md) 0;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Error Boundary Styles */
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+}
+
+.error-boundary-content {
+  text-align: center;
+  background: var(--color-surface);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 500px;
+}
+
+.error-boundary-content h1 {
+  font-family: var(--font-heading);
+  color: var(--color-tiger-dark);
+  margin-bottom: var(--space-md);
+}
+
+.error-boundary-content p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.error-details {
+  text-align: left;
+  background: #f8f9fa;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  max-height: 200px;
+  overflow: auto;
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.error-details pre {
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--color-error);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+
+  .control-panel,
+  .game-footer,
+  button {
+    display: none !important;
+  }
+
+  .app-container {
+    padding: 0;
+  }
+}
